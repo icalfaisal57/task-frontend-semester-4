@@ -1,3 +1,5 @@
+
+
 const users = [
   {
     name: "Aufa",
@@ -24,9 +26,7 @@ const users = [
     age: 27,
     major: "English",
   },
-];
-
-/**
+];/**
  * TODO 1.
  * Export variable users.
  * Gunakan export default.

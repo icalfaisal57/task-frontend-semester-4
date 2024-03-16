@@ -4,6 +4,7 @@
  */
 // CODE HERE
 import users from '../models/users.js';
+console.log(users)
 /**
  * SARAN TODO3 - TODO5.
  * Tulis dulu solusi tanpa penggunaan promise.
@@ -18,9 +19,14 @@ import users from '../models/users.js';
  * - Gunakan method map untuk format user.
  * - Gunakan promise untuk handle asynchronous.
  */
-const formatUser = users => users.map(user => ({ ...user, name: `Mr/Mrs ${user.name}` }));
-const formateduser = formatUser(users);
-console.log(formateduser);
+function formatUser(){
+  return new Promise((resolve, reject) => {
+    const formatedusers = users.map(user =>  {return {...user, name : `Mr/Mrs.${user.name}`}});
+    setTimeout(() => {
+      resolve(formatedusers);
+    }, 3000);
+  })
+}//bingung menggunakan arrow function jadi menggunakan function biasa, saat menggunakan arrow function user selalu undefined :)
 /**
  * TODO 4.
  * Buat function findByName: Mencari 1 user by name.
@@ -29,11 +35,18 @@ console.log(formateduser);
  * - Gunakan method find untuk mencari 1 user.
  * - Gunakan promise untuk handle asynchronous.
  */
-const findByName = (users, findName) => {
-    return users.find(user => user.name === findName);
-  };
-const find = findByName(users, "Aufa");
-console.log(find)
+function findByName(name){
+  return new Promise((resolve,reject)=>{
+    const foundUser=users.find(user => user.name === name);
+    setTimeout(() => {
+      if (foundUser) {
+        resolve(foundUser);
+      } else {
+        reject(`User with name "${findName}" not found.`);
+      }
+    },2000);
+  })
+}
 /**
  * SARAN TODO3 - TODO5.
  * Tulis dulu solusi tanpa penggunaan promise.
@@ -48,11 +61,18 @@ console.log(find)
  * - Gunakan method filter untuk mencari semua user.
  * - Gunakan promise untuk handle asynchronous.
  */
-const filterByMajor = (users, filterMajor) => {
-    return users.filter(user => user.major === filterMajor);
-  };
-const filter = filterByMajor(users,"English");
-console.log(filter);
+function filterByMajor(major){
+  return new Promise((resolve,reject)=>{
+    const filteredByMajor=users.filter(user => user.major === major);
+    setTimeout(() => {
+      if (filteredByMajor) {
+        resolve(filteredByMajor);
+      } else {
+        reject(`User with name "${major}" not found.`);
+      }
+    },4000);
+  })
+}
 
 /**
  * TODO 6.
@@ -61,3 +81,6 @@ console.log(filter);
 // CODE HERE
 
 export { formatUser, findByName, filterByMajor };
+
+
+
