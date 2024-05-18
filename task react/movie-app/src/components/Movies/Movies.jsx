@@ -2,8 +2,8 @@ import styles from "./Movies.module.css";
 import Movie from "../Movie/Movie";
 import data from "../../utils/constants/data";
 import { useState } from "react";
-function Movies() {
-	const [movies, setMovie] = useState(data);
+function Movies(props) {
+	const {movies, setMovie} = props;
 	
 	function handleClick(){
 		const newMovie = {
