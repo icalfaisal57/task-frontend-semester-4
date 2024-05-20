@@ -5,5 +5,4 @@ function Alert(props){
         </div>
     )
 }
-
-export default Alert;
+export default Alert;   
