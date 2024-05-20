@@ -1,20 +1,28 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
+import Alert from "../Alert/Alert";
 
-function Form(props){
+function Form(props) {
 	const { movies, setMovie } = props;
 	const types = [
 		{ type: "action", value: "action" },
 		{ type: "drama", value: "drama" },
-		{ type: "horror", value: "horror"},
-		{ type: "comedy", value: "comedy"},
-		{ type: "dll", value: "dll"},
+		{ type: "horror", value: "horror" },
+		{ type: "comedy", value: "comedy" },
+		{ type: "dll", value: "dll" },
 	];
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
 	const [type, setType] = useState("");
 	const [gambar, setGambar] = useState("");
+
+	//handle error
+	const [isTitleError, setTitleError] = useState(false);
+	const [isDateError, setDateError] = useState(false);
+	const [isTypeError, setTypeError] = useState(false);
+	const [isLinkError, setLinkError] = useState(false);
 
 	function handleTitle(e) {
 		setTitle(e.target.value);
@@ -26,7 +34,6 @@ function Form(props){
 
 	function handleType(e) {
 		setType(e.target.value);
-	
 	}
 
 	function handleGambar(e) {
@@ -35,20 +42,56 @@ function Form(props){
 
 	function handleClick(e) {
 		e.preventDefault();
-		const newMovie = {
-			id: uuidv4(),
-			title: title,
-			year: date,
-			type: type,
-			poster:
-				gambar,
-		};
-		setMovie([...movies, newMovie]);
+		if (title === "") {
+			setTitleError(true);
+			setTypeError(false);
+			setLinkError(false);
+			setDateError(false);
+		}
+		else if(date === ""){
+			setTitleError(false);
+			setTypeError(false);
+			setLinkError(false);
+			setDateError(true);
+		}
+		else if(type === ""){
+			setTitleError(false);
+			setDateError(false);
+			setTypeError(true);
+			setLinkError(false);
+		}
+		else if(gambar === ""){
+			setTitleError(false);
+			setTypeError(false);
+			setLinkError(true);
+			setDateError(false);
+		}
+		else {
+			const newMovie = {
+				id: uuidv4(),
+				title: title,
+				year: date,
+				type: type,
+				poster: gambar,
+			};
+			setMovie([...movies, newMovie]);
+			setTitleError(false);
+			setDateError(false);
+			setTypeError(false);
+			setLinkError(false);
+		}
 	}
 
 	return (
 		<div className={styles.container}>
 			<section className={styles.form}>
+				<div className={styles.form__left}>
+					<img
+						className={styles.form__image}
+						src="https://picsum.photos/536/354"
+						alt="ini gambar"
+					/>
+				</div>
 				<form onSubmit={handleClick}>
 					<div className={styles.right}>
 						<div className={styles.form__form}>
@@ -68,6 +111,9 @@ function Form(props){
 										value={title}
 										onChange={handleTitle}
 									/>
+									<div className={styles.error}>
+										{isTitleError && <Alert>Title wajib diisi</Alert>}
+									</div>
 								</div>
 								<div className={styles.form__text}>
 									<label className={styles.form__label} htmlFor="date-input">
@@ -81,10 +127,13 @@ function Form(props){
 										onChange={handleDate}
 										value={date}
 									/>
+									<div className={styles.error}>
+										{isDateError && <Alert>Date wajib diisi</Alert>}
+									</div>
 								</div>
 								<div className={styles.form__text}>
 									<label className={styles.form__label} htmlFor="genreSelect">
-										Genre
+										Type
 									</label>
 									<select
 										onChange={handleType}
@@ -98,6 +147,9 @@ function Form(props){
 											</option>
 										))}
 									</select>
+									<div className={styles.error}>
+										{isTypeError && <Alert>Type wajib diisi</Alert>}
+									</div>
 								</div>
 								<div className={styles.form__text}>
 									<label className={styles.form__label} htmlFor="image-link">
@@ -111,6 +163,9 @@ function Form(props){
 										name="image-link"
 										id="image-link"
 									/>
+									<div className={styles.error}>
+										{isLinkError && <Alert>Link wajib diisi</Alert>}
+									</div>
 								</div>
 								<div>
 									<button className={styles.form__button}>Submit</button>
