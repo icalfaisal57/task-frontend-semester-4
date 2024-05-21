@@ -40,7 +40,6 @@ function Form(props) {
 	function validate(){
 		if (title === "") {
 			setFormError({
-				...isFormError,
 				isTitleError : true,
 				isDateError : false,
 				isTypeError : false,
@@ -50,7 +49,6 @@ function Form(props) {
 		}
 		else if(date === ""){
 			setFormError({
-				...isFormError,
 				isTitleError: false,
 				isDateError: true,
 				isTypeError: false,
@@ -60,7 +58,6 @@ function Form(props) {
 		}
 		else if(type === ""){
 			setFormError({
-				...isFormError,
 				isTitleError: false,
 				isDateError: false,
 				isTypeError: true,
@@ -70,7 +67,6 @@ function Form(props) {
 		}
 		else if(gambar === ""){
 			setFormError({
-				...isFormError,
 				isTitleError: false,
 				isDateError: false,
 				isTypeError: false,
