@@ -1,25 +1,21 @@
-import Navbar from "./components/Navbar/Navbar"
-import Hero from "./components/Hero/Hero"
-import Footer from "./components/Footer/Footer"
-import Movies from "./components/Movies/Movies"
-import Form from "./components/Form/Form"
-import data from "./utils/constants/data"
-import { useState } from "react"
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import CreateMovie from "./pages/Movie/Create";
+import Search from "./pages/Movie/Search";
+import Layout from "./components/Layout";
 
 function App(props) {
-	const [movies, setMovie] = useState(data);
-
-  return (
+	return (
 		<>
-			<div>
-				<Navbar></Navbar>
-				<Hero></Hero>
-				<Movies movies={movies} setMovie={setMovie}></Movies>
-				<Form movies={movies} setMovie={setMovie}></Form>
-				<Footer></Footer>
-			</div>
+			<Layout>
+				<Routes>
+					<Route path="/" element={<Home></Home>}></Route>
+					<Route path="/movie/create" element={<CreateMovie />}></Route>
+					<Route path="/movie/search" element={<Search />}></Route>
+				</Routes>
+			</Layout>
 		</>
 	);
 }
 
-export default App
+export default App;

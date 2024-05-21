@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
 import Alert from "../Alert/Alert";
 
 function Form(props) {
@@ -13,61 +12,69 @@ function Form(props) {
 		{ type: "comedy", value: "comedy" },
 		{ type: "dll", value: "dll" },
 	];
-	const [title, setTitle] = useState("");
-	const [date, setDate] = useState("");
-	const [type, setType] = useState("");
-	const [gambar, setGambar] = useState("");
+	//membuat state untuk refactor
+	const [formData, setFormData] =  useState({
+		title : "",
+		date : "",
+		type : "",
+		gambar : "",
+	})
 
+	function handleChange(e){
+		const {name, value} = e.target;
+		setFormData({
+			...formData,
+			[name] : value
+		})
+	}
 	//handle error
 	const [isTitleError, setTitleError] = useState(false);
 	const [isDateError, setDateError] = useState(false);
 	const [isTypeError, setTypeError] = useState(false);
 	const [isLinkError, setLinkError] = useState(false);
 
-	function handleTitle(e) {
-		setTitle(e.target.value);
-	}
 
-	function handleDate(e) {
-		setDate(e.target.value);
-	}
+	const {title,date,type,gambar}= formData;
 
-	function handleType(e) {
-		setType(e.target.value);
-	}
-
-	function handleGambar(e) {
-		setGambar(e.target.value);
-	}
-
-	function handleClick(e) {
-		e.preventDefault();
+	function validate(){
 		if (title === "") {
 			setTitleError(true);
 			setTypeError(false);
 			setLinkError(false);
 			setDateError(false);
+			return false;
 		}
 		else if(date === ""){
 			setTitleError(false);
 			setTypeError(false);
 			setLinkError(false);
 			setDateError(true);
+			return false;
 		}
 		else if(type === ""){
 			setTitleError(false);
 			setDateError(false);
 			setTypeError(true);
 			setLinkError(false);
+			return false;
 		}
 		else if(gambar === ""){
 			setTitleError(false);
 			setTypeError(false);
 			setLinkError(true);
 			setDateError(false);
+			return false;
 		}
-		else {
-			const newMovie = {
+		else{
+			setTitleError(false);
+			setDateError(false);
+			setTypeError(false);
+			setLinkError(false);
+			return true
+		}
+	}
+	function addMovie(){
+				const newMovie = {
 				id: uuidv4(),
 				title: title,
 				year: date,
@@ -75,11 +82,17 @@ function Form(props) {
 				poster: gambar,
 			};
 			setMovie([...movies, newMovie]);
-			setTitleError(false);
-			setDateError(false);
-			setTypeError(false);
-			setLinkError(false);
-		}
+	}
+	function resetForm(){
+		setTitle("");
+		setDate("");
+		setType("");
+		setGambar("");
+	}
+
+	function handleClick(e) {
+		e.preventDefault();
+		validate() && addMovie() && resetForm();
 	}
 
 	return (
@@ -109,7 +122,7 @@ function Form(props) {
 										name="title"
 										id="title-input"
 										value={title}
-										onChange={handleTitle}
+										onChange={handleChange}
 									/>
 									<div className={styles.error}>
 										{isTitleError && <Alert>Title wajib diisi</Alert>}
@@ -124,7 +137,7 @@ function Form(props) {
 										type="date"
 										name="date"
 										id="date-input"
-										onChange={handleDate}
+										onChange={handleChange}
 										value={date}
 									/>
 									<div className={styles.error}>
@@ -136,8 +149,8 @@ function Form(props) {
 										Type
 									</label>
 									<select
-										onChange={handleType}
-										name="genre"
+										onChange={handleChange}
+										name="type"
 										id="genreSelect"
 										className={styles.form__input}>
 										<option value="">pilih genre</option>
@@ -156,11 +169,11 @@ function Form(props) {
 										Link Gambar
 									</label>
 									<input
-										onChange={handleGambar}
+										onChange={handleChange}
 										value={gambar}
 										className={styles.form__input}
 										type="text"
-										name="image-link"
+										name="gambar"
 										id="image-link"
 									/>
 									<div className={styles.error}>
