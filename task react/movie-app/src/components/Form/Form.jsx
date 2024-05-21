@@ -28,48 +28,60 @@ function Form(props) {
 		})
 	}
 	//handle error
-	const [isTitleError, setTitleError] = useState(false);
-	const [isDateError, setDateError] = useState(false);
-	const [isTypeError, setTypeError] = useState(false);
-	const [isLinkError, setLinkError] = useState(false);
-
-
+	const [isFormError, setFormError] = useState({
+		isTitleError : false,
+		isDateError : false,
+		isTypeError : false,
+		isLinkError : false,
+	});
+	const {isTitleError, isDateError,isTypeError,isLinkError} = isFormError;
 	const {title,date,type,gambar}= formData;
 
 	function validate(){
 		if (title === "") {
-			setTitleError(true);
-			setTypeError(false);
-			setLinkError(false);
-			setDateError(false);
+			setFormError({
+				...isFormError,
+				isTitleError : true,
+				isDateError : false,
+				isTypeError : false,
+				isLinkError : false,
+			})
 			return false;
 		}
 		else if(date === ""){
-			setTitleError(false);
-			setTypeError(false);
-			setLinkError(false);
-			setDateError(true);
+			setFormError({
+				...isFormError,
+				isTitleError: false,
+				isDateError: true,
+				isTypeError: false,
+				isLinkError: false,
+			});
 			return false;
 		}
 		else if(type === ""){
-			setTitleError(false);
-			setDateError(false);
-			setTypeError(true);
-			setLinkError(false);
+			setFormError({
+				...isFormError,
+				isTitleError: false,
+				isDateError: false,
+				isTypeError: true,
+				isLinkError: false,
+			});
 			return false;
 		}
 		else if(gambar === ""){
-			setTitleError(false);
-			setTypeError(false);
-			setLinkError(true);
-			setDateError(false);
+			setFormError({
+				...isFormError,
+				isTitleError: false,
+				isDateError: false,
+				isTypeError: false,
+				isLinkError: true,
+			});
 			return false;
 		}
 		else{
-			setTitleError(false);
-			setDateError(false);
-			setTypeError(false);
-			setLinkError(false);
+			setFormError({
+				...isFormError
+			})
 			return true
 		}
 	}
