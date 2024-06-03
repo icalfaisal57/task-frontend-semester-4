@@ -5,6 +5,10 @@
     color: #fff;
 }
 
+.Navbar__link{
+    text-decoration: none;
+    color: #fff;
+}
 .navbar {
     display: flex;
     flex-direction: column;
