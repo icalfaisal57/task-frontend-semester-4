@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import styles from "./Hero.module.css";
-import { matchPath } from "react-router-dom";
+import Button from "../ui/Button";
+import StyledHero from "./Hero.styled";
+
 function Hero() {
-	//membuat state
+	// Membuat state
 	const [movie, setMovie] = useState("");
+
 	useEffect(() => {
 		async function fetchMovie() {
 			const response = await fetch(
@@ -15,27 +17,24 @@ function Hero() {
 			setMovie(data);
 		}
 		fetchMovie();
-	},[]);
+	}, []);
+
 	return (
-		<div className={styles.container}>
-			<section className={styles.hero}>
-				<div className={styles.hero__left}>
-					<h2 className={styles.hero__title}>{movie.Title}</h2>
-					<h3 className={styles.hero__genre}>{movie.Genre}</h3>
-					<p className={styles.hero__description}>
-						{movie.Plot}
-					</p>
-					<button className={styles.hero__button}>Watch</button>
-				</div>
-				<div className={styles.hero__right}>
-					<img
-						className={styles.hero__image}
-						src={movie.Poster}
-						alt={movie.Title}
-					/>
-				</div>
-			</section>
-		</div>
+		<StyledHero>
+			<div className="container">
+				<section className="hero">
+					<div className="hero__left">
+						<h2 className="hero__title">{movie.Title}</h2>
+						<h3 className="hero__genre">{movie.Genre}</h3>
+						<p className="hero__description">{movie.Plot}</p>
+						<Button variant="primary">Watch Movie</Button>
+					</div>
+					<div className="hero__right">
+						<img className="hero__image" src={movie.Poster} alt={movie.Title} />
+					</div>
+				</section>
+			</div>
+		</StyledHero>
 	);
 }
 

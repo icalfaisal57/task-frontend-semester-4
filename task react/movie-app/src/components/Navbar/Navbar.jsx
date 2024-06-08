@@ -1,30 +1,32 @@
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import StyledNavbar from "./Navbar.styled";
 
 function Navbar() {
 	return (
-		<div className={styles.container}>
-			<nav className={styles.navbar}>
-				<h2 className={styles.navbar__brand}>Movie App</h2>
-				<ul className={styles.navbar__list}>
-					<li className={styles.navbar__item}>
-						<Link className={styles.Navbar__link} to="/">
-							Home
-						</Link>
-					</li>
-					<li className={styles.navbar__item}>
-						<Link className={styles.Navbar__link} to="/movie/create">
-							Add Movie
-						</Link>
-					</li>
-					<li className={styles.navbar__item}>
-						<Link className={styles.Navbar__link} to="/movie/search">
-							Search
-						</Link>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		<StyledNavbar>
+			<div className="container">
+				<nav className="navbar">
+					<h2 className="navbar__brand">Movie App</h2>
+					<ul className="navbar__list">
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/">
+								Home
+							</Link>
+						</li>
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/movie/create">
+								Add Movie
+							</Link>
+						</li>
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/movie/search">
+								Search
+							</Link>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</StyledNavbar>
 	);
 }
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "../Alert/Alert";
+import Button from "../ui/Button";
 
 function Form(props) {
 	const { movies, setMovie } = props;
@@ -189,7 +190,7 @@ function Form(props) {
 									</div>
 								</div>
 								<div>
-									<button className={styles.form__button}>Submit</button>
+									<Button variant="secondary" full size="lg">Submit</Button>
 								</div>
 							</div>
 						</div>
