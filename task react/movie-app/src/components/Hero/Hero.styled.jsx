@@ -40,6 +40,7 @@ const StyledHero = styled.div`
 		border-radius: 10px;
 		background-color: #4361ee;
 		color: #fff;
+		text-decoration: none;
 	}
 
 	.hero__image {

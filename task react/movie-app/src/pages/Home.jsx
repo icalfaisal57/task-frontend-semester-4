@@ -6,14 +6,14 @@ import { useState } from "react";
 import Counter from "../components/Counter";
 
 function Home(props) {
-	const [movies, setMovie] = useState(data);
+	const [movies, setMovies] = useState(data);
 
 	return (
 		<>
 			<div>
 				<Hero></Hero>
-				<Movies movies={movies} setMovie={setMovie}></Movies>
-				<Form movies={movies} setMovie={setMovie}></Form>
+				<Movies movies={movies} setMovies={setMovies} title={"Latest Movies"}></Movies>
+				<Form movies={movies} setMovies={setMovies}></Form>
 			</div>
 		</>
 	);

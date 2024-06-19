@@ -5,7 +5,7 @@ import Alert from "../Alert/Alert";
 import Button from "../ui/Button";
 
 function Form(props) {
-	const { movies, setMovie } = props;
+	const { movies, setMovies } = props;
 	const types = [
 		{ type: "action", value: "action" },
 		{ type: "drama", value: "drama" },

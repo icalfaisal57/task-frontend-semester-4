@@ -23,6 +23,21 @@ function Navbar() {
 								Search
 							</Link>
 						</li>
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/movie/popular">
+								Popular
+							</Link>
+						</li>
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/movie/nowplaying">
+								Now Playing
+							</Link>
+						</li>
+						<li className="navbar__item">
+							<Link className="Navbar__link" to="/movie/toprated">
+								Top Rated
+							</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
