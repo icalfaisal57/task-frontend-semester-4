@@ -9,6 +9,7 @@ import Globalstyle from "./components/Globalstyle";
 import PopularMovie from "./pages/Movie/PopularMovie";
 import TopRated from "./pages/Movie/TopRated";
 import NowPlaying from "./pages/Movie/NowPlaying";
+import Detail from "./pages/Movie/Detail";
 
 
 function App(props) {
@@ -24,6 +25,8 @@ function App(props) {
 						<Route path="/movie/popular" element={<PopularMovie />}></Route>
 						<Route path="/movie/toprated" element={<TopRated />}></Route>
 						<Route path="/movie/nowplaying" element={<NowPlaying />}></Route>
+						<Route path="/movie/:id" element={<Detail />}></Route>
+
 					</Routes>
 				</Layout>
 			</ThemeProvider>
