@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StyledDetail from "./DetailMovie.styled";
 import Button from "../ui/Button";
+import { ENDPOINTS } from "../../utils/constants/endpoint";
 
 function DetailMovie() {
 	const param = useParams();
@@ -12,12 +13,13 @@ function DetailMovie() {
 	
 	useEffect(() => {
 		getDetailMovie();
-	}, []);
-	async function getDetailMovie() {
-		const API_KEY = import.meta.env.VITE_API_KEY;
-		const URL = `https://api.themoviedb.org/3/movie/${param.id}?api_key=${API_KEY}&append_to_response=videos`;
+	}, [param.id]);
 
-		const response = await axios(URL);
+	async function getDetailMovie() {
+		// const API_KEY = import.meta.env.VITE_API_KEY;
+		// const URL = `https://api.themoviedb.org/3/movie/${param.id}?api_key=${API_KEY}&append_to_response=videos`;
+
+		const response = await axios(ENDPOINTS.DETAILBYPARAM.replace("{id}",param.id));
 		setMovie(response.data);
 	}
 	console.log(movie);
@@ -32,12 +34,12 @@ function DetailMovie() {
 				</div>
 				<div className="info">
 					<h2>{movie.title}</h2>
-					<h3>{genres}</h3>
+					<h3>Genre: {genres}</h3>
 					<p>{movie.overview}</p>
 					<Button
 						as="a"
 						href={`https://www.youtube.com/watch?v=${trailer}`}
-						variant="primary"
+						$variant="primary"
 						target="_blank"
 						className="button">
 						Watch Movie

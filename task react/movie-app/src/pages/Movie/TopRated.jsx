@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import Movies from "../../components/Movies/Movies";
 import Hero from "../../components/Hero/Hero";
 import axios from "axios";
+import { ENDPOINTS } from "../../utils/constants/endpoint";
 
 function TopRated() {
-	const API_KEY = import.meta.env.VITE_API_KEY;
-	const URL = `https://api.themoviedb.org/3/movie/top_rated?page=1&api_key=${API_KEY}`;
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
 		getPopularMovies();
 	}, []);
 	async function getPopularMovies() {
-		const response = await axios(URL);
+		const response = await axios(ENDPOINTS.TOPRATED);
 		setMovies(response.data.results);
 	}
 	console.log(movies);

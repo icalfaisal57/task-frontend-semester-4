@@ -190,7 +190,9 @@ function Form(props) {
 									</div>
 								</div>
 								<div>
-									<Button variant="secondary" full size="lg">Submit</Button>
+									<Button $variant="secondary" $full={true} size="lg">
+										Submit
+									</Button>
 								</div>
 							</div>
 						</div>

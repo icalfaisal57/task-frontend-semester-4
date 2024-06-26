@@ -14,7 +14,7 @@ function Movies(props) {
 			poster:
 				"https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_SX300.jpg",
 		};
-		setMovie([...movies,newMovie])
+		setMovies([...movies,newMovie])
 	}
 
 	return (

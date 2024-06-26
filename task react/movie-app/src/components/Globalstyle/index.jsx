@@ -1,17 +1,16 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
-const Globalstyle = createGlobalStyle`
-    //css reset
-    @import url('https://fonts.googleapis.com//css2?family=Monserrat:wgh@400;500;600;700&display=swap');
-    *{
+const GlobalStyle = createGlobalStyle`
+    /* css reset */
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-    body{
+    body {
         margin: 0;
-        font-family: 'Monserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
-`
-;
-export default Globalstyle;
+`;
+
+export default GlobalStyle;

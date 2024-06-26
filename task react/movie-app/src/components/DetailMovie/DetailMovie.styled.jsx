@@ -1,57 +1,64 @@
 import styled from "styled-components";
 
 const StyledDetail = styled.div`
-	// Mobile Screen
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 1rem;
-	padding: 1rem;
-	text-align: center;
-	.button {
-		text-decoration: none;
-	}
-	img {
-		border-radius: 25px;
-		max-width: 100%;
-		height: auto;
-	}
-
-	h2 {
-		font-size: 2.44rem;
-		margin-bottom: 0.5rem;
-		color: ${({ theme }) => theme.colors.primary};
-	}
-
-	h3 {
-		font-size: 1.59rem;
-		margin-bottom: 0.5rem;
-		color: ${({ theme }) => theme.colors.secondary};
-	}
-
-	p {
-		text-align: justify;
-		margin-bottom: 2rem;
-		color: #64748b;
-	}
-
-	// Medium Screen: 768px
-	@media screen and (min-width: 768px) {
+	.container {
 		display: flex;
-		flex-direction: column;
-		text-align: left;
-
-		.poster {
-			flex-basis: 30%;
-		}
-
-		.info {
-			flex-basis: 60%;
-		}
+		align-items: center;
+		justify-content: space-between;
+		padding: 2rem;
 	}
 
-	// Large Screen
-	@media screen and (min-width: 992px) {
+	.poster {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.poster img {
+		width: 100%;
+		height: auto;
+		border-radius: 15px;
+		max-width: 300px; /* Control the size of the image */
+	}
+
+	.info {
+		flex: 2;
+		padding: 1rem;
+	}
+
+	.info h2 {
+		font-size: 2rem;
+		color: #26a69a;
+		margin-bottom: 0.5rem;
+	}
+
+	.info h3 {
+		font-size: 1.2rem;
+		color: #2196f3;
+		margin-bottom: 1rem;
+	}
+
+	.info p {
+		font-size: 1rem;
+		color: #757575;
+		line-height: 1.5;
+		margin-bottom: 1.5rem;
+	}
+
+	.button {
+		display: inline-block;
+		padding: 0.8rem 2rem;
+		font-size: 1rem;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.button:hover {
+		background-color: #1d7f72;
 	}
 `;
 

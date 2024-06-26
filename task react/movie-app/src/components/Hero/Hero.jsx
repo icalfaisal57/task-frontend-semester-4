@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import Button from "../ui/Button";
 import StyledHero from "./Hero.styled";
 import axios from "axios";
+import { ENDPOINTS, getDetailEndpoint } from "../../utils/constants/endpoint";
 
 function Hero() {
 	// Membuat state
 	const [movie, setMovie] = useState("");
-	const API_KEY = import.meta.env.VITE_API_KEY;
 	const genres = movie && movie.genres.map((genre) => genre.name).join(", ");
 	const trailer = movie && movie.videos.results[0].key;
 
 	useEffect(() => {
 		async function getTrendingMovie() {
-			const URL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
-			const response = await axios(URL);
+			const response = await axios(ENDPOINTS.TRENDING);
 			console.log(response.data.results[0]);
 			return response.data.results[0];
 		}
@@ -21,9 +20,9 @@ function Hero() {
 		async function getDetailMovie() {
 			const trendingMovie = await getTrendingMovie();
 			const id = trendingMovie.id;
-			const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
-			const response = await axios(URL);
-			console.log(response.data);
+			const detailEndpoint = getDetailEndpoint(id);
+			const response = await axios(detailEndpoint);
+			// console.log(response.data);
 			setMovie(response.data);
 		}
 		getDetailMovie();
@@ -40,7 +39,9 @@ function Hero() {
 						<Button
 							as="a"
 							href={`https://www.youtube.com/watch?v=${trailer}`}
-							variant="primary" target="_blank" className="hero__button">
+							variant="primary"
+							target="_blank"
+							className="hero__button">
 							Watch Movie
 						</Button>
 					</div>
