@@ -5,7 +5,7 @@ function Create({movies,setMovies}){
     return (
 			<>
 				<Hero></Hero>
-				<Form movies={movies} setMovies={setMovies}></Form>
+				<Form></Form>
 			</>
 		);
 }

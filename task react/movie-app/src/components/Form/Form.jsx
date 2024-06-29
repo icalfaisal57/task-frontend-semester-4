@@ -4,9 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import Alert from "../Alert/Alert";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addMovie } from "../../features/movieSlice";
 
-function Form(props) {
-	const { movies, setMovies } = props;
+function Form() {
+
+	//buat dispatch 
+	const dispatch = useDispatch();
 
 	//buat navigasi
 	const navigation = useNavigate();
@@ -87,7 +91,7 @@ function Form(props) {
 			return true
 		}
 	}
-	function addMovie(){
+	function submitMovie(){
 				const newMovie = {
 				id: uuidv4(),
 				title: title,
@@ -95,7 +99,7 @@ function Form(props) {
 				type: type,
 				poster: gambar,
 			};
-			setMovies([...movies, newMovie]);
+			dispatch(addMovie(newMovie))
 
 			navigation("/")
 	}
@@ -108,7 +112,7 @@ function Form(props) {
 
 	function handleClick(e) {
 		e.preventDefault();
-		validate() && addMovie() && resetForm();
+		validate() && submitMovie() && resetForm();
 	}
 
 	return (
