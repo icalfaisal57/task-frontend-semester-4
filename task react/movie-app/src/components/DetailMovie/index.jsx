@@ -16,10 +16,7 @@ function DetailMovie() {
 	}, [param.id]);
 
 	async function getDetailMovie() {
-		// const API_KEY = import.meta.env.VITE_API_KEY;
-		// const URL = `https://api.themoviedb.org/3/movie/${param.id}?api_key=${API_KEY}&append_to_response=videos`;
-
-		const response = await axios(ENDPOINTS.DETAILBYPARAM.replace("{id}",param.id));
+		const response = await axios(ENDPOINTS.DETAIL(param.id));
 		setMovie(response.data);
 	}
 	console.log(movie);

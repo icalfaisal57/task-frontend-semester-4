@@ -20,8 +20,7 @@ function Hero() {
 		async function getDetailMovie() {
 			const trendingMovie = await getTrendingMovie();
 			const id = trendingMovie.id;
-			const detailEndpoint = getDetailEndpoint(id);
-			const response = await axios(detailEndpoint);
+			const response = await axios(ENDPOINTS.DETAIL(id));
 			// console.log(response.data);
 			setMovie(response.data);
 		}

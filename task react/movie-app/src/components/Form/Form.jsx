@@ -3,9 +3,14 @@ import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "../Alert/Alert";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Form(props) {
 	const { movies, setMovies } = props;
+
+	//buat navigasi
+	const navigation = useNavigate();
+
 	const types = [
 		{ type: "action", value: "action" },
 		{ type: "drama", value: "drama" },
@@ -90,7 +95,9 @@ function Form(props) {
 				type: type,
 				poster: gambar,
 			};
-			setMovie([...movies, newMovie]);
+			setMovies([...movies, newMovie]);
+
+			navigation("/")
 	}
 	function resetForm(){
 		setTitle("");

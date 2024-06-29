@@ -1,8 +1,12 @@
-function Create(){
+import Form from "../../components/Form/Form";
+import Hero from "../../components/Hero/Hero";
+
+function Create({movies,setMovies}){
     return (
-			<div>
-				<h2>Create Movie</h2>
-			</div>
+			<>
+				<Hero></Hero>
+				<Form movies={movies} setMovies={setMovies}></Form>
+			</>
 		);
 }
 export default Create;

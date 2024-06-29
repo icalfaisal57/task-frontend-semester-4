@@ -11,9 +11,13 @@ import TopRated from "./pages/Movie/TopRated";
 import NowPlaying from "./pages/Movie/NowPlaying";
 import Detail from "./pages/Movie/Detail";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useState } from "react";
+import data from "./utils/constants/data";
 
 
 function App(props) {
+	const [movies, setMovies] = useState(data);
+
 	return (
 		<HelmetProvider>
 			<>
@@ -27,8 +31,16 @@ function App(props) {
 					<Globalstyle />
 					<Layout>
 						<Routes>
-							<Route path="/" element={<Home></Home>}></Route>
-							<Route path="/movie/create" element={<CreateMovie />}></Route>
+							<Route
+								path="/"
+								element={
+									<Home movies={movies}></Home>
+								}></Route>
+							<Route
+								path="/movie/create"
+								element={
+									<CreateMovie movies={movies} setMovies={setMovies} />
+								}></Route>
 							<Route path="/movie/search" element={<Search />}></Route>
 							<Route path="/movie/popular" element={<PopularMovie />}></Route>
 							<Route path="/movie/toprated" element={<TopRated />}></Route>
