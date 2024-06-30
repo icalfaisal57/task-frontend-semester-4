@@ -16,7 +16,7 @@ import { useState } from "react";
 import data from "./utils/constants/data";
 
 
-function App(props) {
+function App() {
 	const [movies, setMovies] = useState(data)
 
 	const contextValue = {
@@ -44,7 +44,7 @@ function App(props) {
 								<Route
 									path="/movie/nowplaying"
 									element={<NowPlaying />}></Route>
-								<Route path="/movie/:id" element={<Detail />}></Route>
+								<Route path="/movie/:id" element={<Detail/>}></Route>
 							</Routes>
 						</Layout>
 					</MovieContext.Provider>

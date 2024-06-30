@@ -2,7 +2,7 @@ import { useContext, useEffect} from "react";
 import Movies from "../../components/Movies/Movies";
 import Hero from "../../components/Hero/Hero";
 import axios from "axios";
-import { ENDPOINTS, getDetailEndpoint } from "../../utils/constants/endpoint";
+import  ENDPOINTS from "../../utils/constants/endpoint";
 import MovieContext from "../../Context/MovieContext";
 
 function NowPlaying() {

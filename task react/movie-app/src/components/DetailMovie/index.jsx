@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StyledDetail from "./DetailMovie.styled";
 import Button from "../ui/Button";
-import { ENDPOINTS } from "../../utils/constants/endpoint";
+import ENDPOINTS  from "../../utils/constants/endpoint";
 
 function DetailMovie() {
 	const param = useParams();
