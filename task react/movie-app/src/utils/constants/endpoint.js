@@ -11,6 +11,6 @@ const ENDPOINTS = {
     return `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;}
 };
 
-const getDetailEndpoint = (id) => `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+// const getDetailEndpoint = (id) => `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
 
-export { ENDPOINTS, getDetailEndpoint };
+export default ENDPOINTS;

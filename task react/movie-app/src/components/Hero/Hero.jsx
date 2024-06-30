@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../ui/Button";
 import StyledHero from "./Hero.styled";
 import axios from "axios";
-import { ENDPOINTS } from "../../utils/constants/endpoint";
+import ENDPOINTS  from "../../utils/constants/endpoint";
 
 function Hero() {
 	// Membuat state
