@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "../Alert/Alert";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 import MovieContext from "../../Context/MovieContext";
+import StyledForm from "./Form.styled";
 
 function Form() {
 	const {movies, setMovies} = useContext(MovieContext)
@@ -114,101 +114,103 @@ function Form() {
 	}
 
 	return (
-		<div className={styles.container}>
-			<section className={styles.form}>
-				<div className={styles.form__left}>
-					<img
-						className={styles.form__image}
-						src="https://picsum.photos/536/354"
-						alt="ini gambar"
-					/>
-				</div>
-				<form onSubmit={handleClick}>
-					<div className={styles.right}>
-						<div className={styles.form__form}>
-							<div>
-								<div className={styles.form__formHead}>
-									<h1 id="control-1147078">Add Movie</h1>
-								</div>
-								<div className={styles.form__text}>
-									<label className={styles.form__label} htmlFor="title-input">
-										Title
-									</label>
-									<input
-										className={styles.form__input}
-										type="text"
-										name="title"
-										id="title-input"
-										value={title}
-										onChange={handleChange}
-									/>
-									<div className={styles.error}>
-										{isTitleError && <Alert>Title wajib diisi</Alert>}
-									</div>
-								</div>
-								<div className={styles.form__text}>
-									<label className={styles.form__label} htmlFor="date-input">
-										Date
-									</label>
-									<input
-										className={styles.form__input}
-										type="date"
-										name="date"
-										id="date-input"
-										onChange={handleChange}
-										value={date}
-									/>
-									<div className={styles.error}>
-										{isDateError && <Alert>Date wajib diisi</Alert>}
-									</div>
-								</div>
-								<div className={styles.form__text}>
-									<label className={styles.form__label} htmlFor="genreSelect">
-										Type
-									</label>
-									<select
-										onChange={handleChange}
-										name="type"
-										id="genreSelect"
-										className={styles.form__input}>
-										<option value="">pilih genre</option>
-										{types.map((type) => (
-											<option key={type.value} value={type.value}>
-												{type.type}
-											</option>
-										))}
-									</select>
-									<div className={styles.error}>
-										{isTypeError && <Alert>Type wajib diisi</Alert>}
-									</div>
-								</div>
-								<div className={styles.form__text}>
-									<label className={styles.form__label} htmlFor="image-link">
-										Link Gambar
-									</label>
-									<input
-										onChange={handleChange}
-										value={gambar}
-										className={styles.form__input}
-										type="text"
-										name="gambar"
-										id="image-link"
-									/>
-									<div className={styles.error}>
-										{isLinkError && <Alert>Link wajib diisi</Alert>}
-									</div>
-								</div>
+		<StyledForm>
+			<div className="container">
+				<section className="form">
+					<div className="form__left">
+						<img
+							className="form__image"
+							src="https://picsum.photos/536/354"
+							alt="ini gambar"
+						/>
+					</div>
+					<form onSubmit={handleClick}>
+						<div className="right">
+							<div className="form__form">
 								<div>
-									<Button $variant="secondary" $full={true} size="lg">
-										Submit
-									</Button>
+									<div className="form__formHead">
+										<h1 id="control-1147078">Add Movie</h1>
+									</div>
+									<div className="form__text">
+										<label className="form__label" htmlFor="title-input">
+											Title
+										</label>
+										<input
+											className="form__input"
+											type="text"
+											name="title"
+											id="title-input"
+											value={title}
+											onChange={handleChange}
+										/>
+										<div className="error">
+											{isTitleError && <Alert>Title wajib diisi</Alert>}
+										</div>
+									</div>
+									<div className="form__text">
+										<label className="form__label" htmlFor="date-input">
+											Date
+										</label>
+										<input
+											className="form__input"
+											type="date"
+											name="date"
+											id="date-input"
+											onChange={handleChange}
+											value={date}
+										/>
+										<div className="error">
+											{isDateError && <Alert>Date wajib diisi</Alert>}
+										</div>
+									</div>
+									<div className="form__text">
+										<label className="form__label" htmlFor="genreSelect">
+											Type
+										</label>
+										<select
+											onChange={handleChange}
+											name="type"
+											id="genreSelect"
+											className="form__input">
+											<option value="">pilih genre</option>
+											{types.map((type) => (
+												<option key={type.value} value={type.value}>
+													{type.type}
+												</option>
+											))}
+										</select>
+										<div className="error">
+											{isTypeError && <Alert>Type wajib diisi</Alert>}
+										</div>
+									</div>
+									<div className="form__text">
+										<label className="form__label" htmlFor="image-link">
+											Link Gambar
+										</label>
+										<input
+											onChange={handleChange}
+											value={gambar}
+											className="form__input"
+											type="text"
+											name="gambar"
+											id="image-link"
+										/>
+										<div className="error">
+											{isLinkError && <Alert>Link wajib diisi</Alert>}
+										</div>
+									</div>
+									<div>
+										<Button $variant="secondary" $full={true} size="lg">
+											Submit
+										</Button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</form>
-			</section>
-		</div>
+					</form>
+				</section>
+			</div>
+		</StyledForm>
 	);
 }
 export default Form;
