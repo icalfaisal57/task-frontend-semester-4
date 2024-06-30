@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../../utils/constants/data";
 
-//buat slice untuk generate action dan reducer
-// menerima param Object: name, initialState, reducers  
+// Create slice to generate action and reducer
 const movieSlice = createSlice({
     name: "Movies slice",
     initialState: {
         movies: data,
     },
     reducers: {
-        addMovie(state,action) {
-            state.movies.push(action.payload)
+        addMovie(state, action) {
+            state.movies.push(action.payload);
         },
         deleteMovie() {},
+        updateMovie(state, action) { // Correct order of parameters
+            state.movies.push(...action.payload); // Assuming you want to add an array of movies
+        }
     },
 });
 
-//generate action dan reducers
+// Generate action and reducers
 const moviesReducer = movieSlice.reducer;
-const { addMovie, deleteMovie } = movieSlice.actions;
+const { addMovie, deleteMovie, updateMovie } = movieSlice.actions;
 
 export default moviesReducer;
-export { addMovie, deleteMovie };
+export { addMovie, deleteMovie, updateMovie };

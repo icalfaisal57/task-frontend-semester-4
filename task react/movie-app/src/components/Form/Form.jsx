@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "../Alert/Alert";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addMovie } from "../../features/movieSlice";
+import MovieContext from "../../Context/MovieContext";
 
 function Form() {
-
+	const {movies, setMovies} = useContext(MovieContext)
 	//buat dispatch 
-	const dispatch = useDispatch();
 
 	//buat navigasi
 	const navigation = useNavigate();
@@ -99,7 +97,7 @@ function Form() {
 				type: type,
 				poster: gambar,
 			};
-			dispatch(addMovie(newMovie))
+			setMovies([...movies, newMovie])
 
 			navigation("/")
 	}

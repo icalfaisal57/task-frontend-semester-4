@@ -13,7 +13,7 @@ function Hero() {
 	useEffect(() => {
 		async function getTrendingMovie() {
 			const response = await axios(ENDPOINTS.TRENDING);
-			console.log(response.data.results[0]);
+			// console.log(response.data.results[0]);
 			return response.data.results[0];
 		}
 		//mendapatkan detail movie

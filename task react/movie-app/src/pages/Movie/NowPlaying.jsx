@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import Movies from "../../components/Movies/Movies";
 import Hero from "../../components/Hero/Hero";
 import axios from "axios";
 import { ENDPOINTS, getDetailEndpoint } from "../../utils/constants/endpoint";
+import MovieContext from "../../Context/MovieContext";
 
 function NowPlaying() {
-	const [movies, setMovies] = useState([]);
+	const { setMovies} = useContext(MovieContext);
 
 	useEffect(() => {
 		getPopularMovies();
@@ -19,8 +20,6 @@ function NowPlaying() {
 		<>
 			<Hero></Hero>
 			<Movies
-				movies={movies}
-				setMovies={setMovies}
 				title={"Now Playing"}></Movies>
 		</>
 	);

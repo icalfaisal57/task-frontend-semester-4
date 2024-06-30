@@ -1,10 +1,10 @@
 import styles from "./Movies.module.css";
 import Movie from "../Movie/Movie";
-import { useSelector } from "react-redux";
+import { useContext } from "react";
+import MovieContext from "../../Context/MovieContext";
 function Movies(props) {
-	const { title } = props;
-
-	const movies = useSelector((store) => store.movies.movies)
+	const { title = "Latest Movie" } = props;
+	const { movies } = useContext(MovieContext)
 	return (
 		<div className={styles.container}>
 			<section className={styles.movies}>
